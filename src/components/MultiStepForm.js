@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import PatientDetails from './PatientDetails'
 
+
+
+import { Auth } from './auth'
+
+
 export class MultiStepForm extends Component {
   state = {
-    step: 1,
+    step: 0,
     patientFirstName: '',
     patientLastName: '',
     patientID: '',
@@ -33,6 +38,13 @@ export class MultiStepForm extends Component {
     const { patientFirstName, patientLastName, patientID } = this.state;
     const values = { patientFirstName, patientLastName, patientID };
     switch (step) {
+      case 0:
+        return (
+          <div>
+            <Auth/>
+            <button onClick={this.nextStep}>Next</button>
+          </div>
+        );
       case 1:
         return (
           <PatientDetails
