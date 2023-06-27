@@ -7,6 +7,7 @@
 import FormControl from '@mui/material/FormControl';
 import { InputLabel, Input, FormHelperText } from '@mui/material';
 import { MultiStepForm } from './components/MultiStepForm';
+import { Medications } from './components/Medications';
 
 
 function myApp () 

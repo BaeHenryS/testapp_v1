@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PatientDetails from './PatientDetails'
+import { Medications } from './Medications';
+import { Confirm } from './Confirm';
+import { Success } from './Success';
 
 
 
@@ -54,13 +57,29 @@ export class MultiStepForm extends Component {
           />
         );
       case 2:
-        return <h1>This is the Medication Page, Fleury will finish tomorrow</h1>;
+        return (
+          <Medications
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
       case 3:
-        return <h1>This is the Description Page, Fleury will finish tomorrow</h1>;
+        return (
+            <Confirm
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          );
       case 4:
-        return <h1>This is the Confirmation Page, Fleury will finish tomorrow</h1>;
-      case 5:
-        return <h1>This is the Submission Page, Fleury will finish tomorrow</h1>;
+        return (
+            <Success
+            nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                handleChange={this.handleChange}/>)
     }
   }
 }

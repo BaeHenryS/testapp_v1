@@ -17,7 +17,7 @@ export class PatientDetails extends Component {
           <AppBar position="static" title="Enter User Details" />
           <TextField
             label="Enter Patient First Name"
-            onChange={handleChange('patienFirsttName')}
+            onChange={handleChange('patientFirstName')}
             defaultValue={values.patientFirstName}
           />
           <br />
