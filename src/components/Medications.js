@@ -30,21 +30,24 @@ export class Medications extends Component {
           </AppBar>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '70vh' }}>
           <TextField
-            label="Enter Patient First Name"
-            onChange={handleChange('patientFirsttName')}
-            defaultValue={values.patientFirstName}
+            label="Enter Medication Name"
+            onChange={handleChange('medicationName')}
+            defaultValue={values.medicationName}
           />
           <br />
           <TextField
-            label="Enter Patient Last Name Name"
-            onChange={handleChange('patientLastName')}
-            defaultValue={values.patientLastName}
+            label="Enter Medication ID"
+            onChange={handleChange('medicationID')}
+            defaultValue={values.medicationID}
           />
-          <br />
+          <br></br>
           <TextField
-            label="Enter Patient ID"
-            onChange={handleChange('patientID')}
-            defaultValue={values.patientID}
+              label="Enter Medication Description"
+              multiline
+              rows={4}
+              onChange={handleChange('medicationDescription')}
+              defaultValue={values.medicationDescription}
+              sx={{ width: '90%' }}
           />
           <br />
           <Button variant="contained" color="primary" onClick={this.continue}>

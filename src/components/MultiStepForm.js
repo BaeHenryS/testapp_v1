@@ -3,9 +3,7 @@ import PatientDetails from './PatientDetails'
 import { Medications } from './Medications';
 import { Confirm } from './Confirm';
 import { Success } from './Success';
-
-
-
+import dayjs from 'dayjs';
 import { Auth } from './auth'
 
 
@@ -15,6 +13,10 @@ export class MultiStepForm extends Component {
     patientFirstName: '',
     patientLastName: '',
     patientID: '',
+    patientDOB: '',
+    medicationName: '',
+    medicationDescription: '',
+    medicationID: ''
   };
 
   // Proceed to next step
@@ -32,14 +34,19 @@ export class MultiStepForm extends Component {
     });
   };
 
-  handleChange = (input) => (e) => {
-    this.setState({ [input]: e.target.value });
+  handleChange = (input) => (value) => {
+    if (input === 'patientDOB') {
+      const date = dayjs(value).format('YYYY-MM-DD');
+      this.setState({ [input]: date });
+    } else {
+      this.setState({ [input]: value });
+    }
   };
 
   render() {
     const { step } = this.state;
-    const { patientFirstName, patientLastName, patientID } = this.state;
-    const values = { patientFirstName, patientLastName, patientID };
+    const { patientFirstName, patientLastName, patientID, medicationName, medicationDescription, medicationID, patientDOB } = this.state;
+    const values = { patientFirstName, patientLastName, patientID, medicationName, medicationDescription, medicationID, patientDOB };
     switch (step) {
       case 0:
         return (
