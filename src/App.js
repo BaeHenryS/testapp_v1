@@ -12,7 +12,10 @@ import { useState, useEffect } from 'react';
 import FormControl from '@mui/material/FormControl';
 import { InputLabel, Input, FormHelperText } from '@mui/material';
 import { MultiStepForm } from './components/MultiStepForm';
+
 import { get } from 'react-hook-form';
+import { Medications } from './components/Medications';
+
 
 
 function App () 

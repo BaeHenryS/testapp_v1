@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import PatientDetails from './PatientDetails'
-
-
-
-import { Auth } from './auth'
-
+import PatientDetails from './PatientDetails';
+import { Medications } from './Medications';
+import { Confirm } from './Confirm';
+import { Success } from './Success';
+import dayjs from 'dayjs';
+import { Auth } from './auth';
 
 export class MultiStepForm extends Component {
   state = {
@@ -12,6 +12,10 @@ export class MultiStepForm extends Component {
     patientFirstName: '',
     patientLastName: '',
     patientID: '',
+    patientDOB: '',
+    medicationName: '',
+    medicationDescription: '',
+    medicationID: '',
   };
 
   // Proceed to next step
@@ -30,37 +34,88 @@ export class MultiStepForm extends Component {
   };
 
   handleChange = (input) => (e) => {
-    this.setState({ [input]: e.target.value });
+    if (input === 'patientDOB') {
+      const date = dayjs(e).format('YYYY-MM-DD');
+      this.setState({ [input]: date });
+    } else {
+      this.setState({ [input]: e.target.value });
+    }
+  };
+
+  handleContinueAsGuest = () => {
+    // Implement the desired actions or state updates for continuing as a guest
+    const { step } = this.state;
+    this.setState({
+      step: step + 1,
+      // Update any additional state properties as needed
+    });
   };
 
   render() {
     const { step } = this.state;
-    const { patientFirstName, patientLastName, patientID } = this.state;
-    const values = { patientFirstName, patientLastName, patientID };
+    const {
+      patientFirstName,
+      patientLastName,
+      patientID,
+      medicationName,
+      medicationDescription,
+      medicationID,
+      patientDOB,
+    } = this.state;
+    const values = {
+      patientFirstName,
+      patientLastName,
+      patientID,
+      medicationName,
+      medicationDescription,
+      medicationID,
+      patientDOB,
+    };
+
     switch (step) {
       case 0:
         return (
           <div>
-            <Auth/>
-            <button onClick={this.nextStep}>Next</button>
+            <Auth continueAsGuest={this.nextStep} />
           </div>
         );
       case 1:
         return (
           <PatientDetails
             nextStep={this.nextStep}
+            prevStep={this.prevStep}
             handleChange={this.handleChange}
             values={values}
           />
         );
       case 2:
-        return <h1>This is the Medication Page, Fleury will finish tomorrow</h1>;
+        return (
+          <Medications
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
       case 3:
-        return <h1>This is the Description Page, Fleury will finish tomorrow</h1>;
+        return (
+          <Confirm
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
       case 4:
-        return <h1>This is the Confirmation Page, Fleury will finish tomorrow</h1>;
-      case 5:
-        return <h1>This is the Submission Page, Fleury will finish tomorrow</h1>;
+        return (
+          <Success
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+          />
+        );
+      default:
+        return null;
     }
   }
 }
