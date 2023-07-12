@@ -62,6 +62,7 @@ console.log(patientList)
       {patientList.map((patient) => (
         <div className="Patient" key={patient.id}>
           <h2>{patient.fname}</h2>
+          <h2>{patient.lname}</h2>
         </div>
           ))}
     </div>
