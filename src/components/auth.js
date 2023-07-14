@@ -32,10 +32,12 @@ export const Auth = ({ continueAsGuest }) => {
     }
   };
 
+  // error message 
   const handleClose = () => {
     setOpen(false);
   };
 
+  // proceeds as usual
   const handleContinueAsGuest = () => {
     continueAsGuest();
   };

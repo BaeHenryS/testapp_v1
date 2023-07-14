@@ -72,6 +72,30 @@ export class MultiStepForm extends Component {
       patientDOB,
     };
 
+
+
+    // Store the Data into Firebase
+
+    // const patientReference = collection(db, 'patients');
+    // const addPatient = async() => {
+    //   // CREATE THE DATA
+    //   // Add a new document with a generated id.
+    //   try {
+    //     const docRef = await addDoc(patientReference, {
+    //       fname: values.patientFirstName,
+    //       lname: values.patientLastName,
+    //       dob: values.patientDOB,
+    //       id: values.patientID
+    //     });
+    //     console.log("Document written with ID: ", docRef.id);
+    //   } catch(e) {
+    //     console.error("Error adding document: ", e);
+    //   }
+    // }
+    
+
+
+
     switch (step) {
       case 0:
         return (
@@ -98,6 +122,7 @@ export class MultiStepForm extends Component {
           />
         );
       case 3:
+        console.log(values)
         return (
           <Confirm
             nextStep={this.nextStep}
@@ -105,6 +130,7 @@ export class MultiStepForm extends Component {
             handleChange={this.handleChange}
             values={values}
           />
+          
         );
       case 4:
         return (

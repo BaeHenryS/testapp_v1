@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { AppBar, List, ListItem, ListItemText, ThemeProvider, Button, createTheme } from '@mui/material';
 import { Toolbar, IconButton, Typography, TextField } from '@mui/material';
+//Import Firebase Component:
+
+import setDocument from '../db/set_document' 
+
+
 const theme = createTheme();
+
+
+
+
+
 
 export class Confirm extends Component {
   continue = (e) => {
     e.preventDefault();
 
     // Process Form - send data to Firebase here
-    // 
+    setDocument(this.props.values)
+   
+    
+
+    
 
     this.props.nextStep();
   };
